@@ -1,0 +1,25 @@
+# editors
+*.swp
+*~
+
+# build
+*build*
+*.o
+*.crf
+*.d
+*.axf
+*.hex
+*.htm
+*.lnp
+*.sct
+*.map
+*.dep
+*.dbgconf
+*.uvguix.*
+*.uvoptx
+*.uvprojx
+*.scvd
+*.iex
+*.lst
+*.Bak
+.vscode
