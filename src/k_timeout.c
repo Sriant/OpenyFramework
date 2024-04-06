@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-03-14 18:23:19
  * @LastEditors: Yaosy fmusrr@foxmail.com
- * @LastEditTime: 2024-03-18 23:57:52
+ * @LastEditTime: 2024-03-30 21:16:25
  * @FilePath: \Openy_Framework\src\k_timeout.c
  */
 #include "k_kernel.h"
@@ -105,6 +105,10 @@ void k_timeout_add(struct _timeout *to, _timeout_func_t fn, k_timeout_t timeout)
         sys_clock_set_timeout(next_timeout(), false);
     }
     k_interrupt_enable(sTimeoutLock);
+}
+
+k_ticks_t sys_clock_tick_get(void) {
+	return sCurrTick;
 }
 
 /**

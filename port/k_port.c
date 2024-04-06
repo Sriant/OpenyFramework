@@ -144,6 +144,11 @@ void atomic_clear_bit(atomic_t *target, int bit) {
     (void)atomic_and(ATOMIC_ELEM(target, bit), ~mask);
 }
 
+void k_msleep(int32_t ms) {
+    HAL_Delay(ms);
+}
+
+#ifdef K_CONFIG_TICKLESS_KERNEL
 #define COUNTER_MAX       0x0000ffff
 #define TIMER_STOPPED     0xffff0000
 
@@ -192,6 +197,7 @@ static inline uint32_t sys_clock_lp_time_get(void) {
 
     return lp_time;
 }
+#endif
 
 uint32_t sys_clock_elapsed(void) {
 #ifdef K_CONFIG_TICKLESS_KERNEL

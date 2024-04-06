@@ -167,6 +167,7 @@ struct _timeout {
 void k_timeout_add(struct _timeout *to, _timeout_func_t fn, k_timeout_t timeout);
 int k_timeout_abort(struct _timeout *to);
 void sys_clock_announce(int32_t ticks);
+k_ticks_t sys_clock_tick_get(void);
 
 #ifdef __cplusplus
 }

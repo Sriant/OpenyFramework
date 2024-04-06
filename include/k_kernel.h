@@ -2,7 +2,7 @@
  * @Author: yaosy fmusrr@foxmail.com
  * @Date: 2024-03-07 23:24:49
  * @LastEditors: Yaosy fmusrr@foxmail.com
- * @LastEditTime: 2024-03-23 22:40:52
+ * @LastEditTime: 2024-03-30 21:05:57
  * @Description:
  *
  * Copyright (c) 2024 by ${git_name_email}, All Rights Reserved.
@@ -36,6 +36,7 @@ extern "C" {
 void sys_clock_isr(void);
 void sys_clock_set_timeout(int32_t ticks, bool idle);
 uint32_t sys_clock_elapsed(void);
+void k_msleep(int32_t ms);
 
 /* atomic operation, user implement */
 typedef long atomic_t;
@@ -146,7 +147,7 @@ void k_timer_stop(k_timer_t *timer);
 #define K_MSGQ_DEFINE(q_name, q_msg_size, q_max_msgs, q_align) \
     static char __attribute__((__aligned__(q_align)))          \
     _k_fifo_buf_##q_name[(q_max_msgs) * (q_msg_size)];         \
-    k_msgq_t q_name = K_MSGQ_INITIALIZER(_k_fifo_buf_##q_name, (q_msg_size), (q_max_msgs))
+    static k_msgq_t q_name = K_MSGQ_INITIALIZER(_k_fifo_buf_##q_name, (q_msg_size), (q_max_msgs))
 
 #define K_MSGQ_INITIALIZER(q_buffer, q_msg_size, q_max_msgs) \
 	{ \
@@ -191,7 +192,7 @@ int k_msgq_peek(struct k_msgq *msgq, void *data);
 #ifdef K_CONFIG_WORKQ
 
 #define K_WORK_USER_INITIALIZER(work_handler) \
-    { .handler = work_handler, .flags = 0 }
+    { .handler = work_handler, .context = NULL, .flags = 0 }
 
 typedef struct k_work_user k_work_user_t;
 typedef struct k_work_delayable k_work_delayable_t;

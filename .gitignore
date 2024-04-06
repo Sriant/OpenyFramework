@@ -16,10 +16,7 @@
 *.dep
 *.dbgconf
 *.uvguix.*
-*.uvoptx
-*.uvprojx
 *.scvd
 *.iex
 *.lst
 *.Bak
-.vscode
