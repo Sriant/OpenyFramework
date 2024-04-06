@@ -4,6 +4,7 @@
         1、timer + work 处理任务。提交工作项时，不存在内存拷贝；
         2、msgq 实现自定义事件队列。提交事件时，存在内存拷贝；
         3、环形缓冲区 ringbuffer。
+        4、层次状态机 k_hsm。
 # Guidance
     提供 port 的实现：
     配置文件：k_config.h
